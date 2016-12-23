@@ -1,0 +1,43 @@
+<script src="assets/js/form/ph.js?<?php echo time();?>"></script>
+<div id="ph-content" data-default-pack="<?php echo $this->pack;?>">
+	<div class="row">
+		<div class="col-xs-6">
+			<button type="button" id= "btn_create_ph"  class="btn btn-turquoise">Create Deposit</button>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">List of Deposit</h3>
+		</div>
+		<div class="panel-body">
+			<div id="example-2_wrapper"
+				class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+				<table class="table table-bordered table-striped dataTable no-footer"
+					id="example-2" role="grid" aria-describedby="example-2_info">
+					<thead>
+						<tr role="row">
+							<th>No</th>
+							<th>Amount</th>
+							<th>Package</th>
+							<th>Rate/Day</th>
+							<th style="min-width: 100px;">Date created</th>
+							<th style="min-width: 100px;">Status</th>
+						</tr>
+					</thead>
+					<tbody class="middle-align">
+						<?php foreach ($this->data[0] as $index => $row) {?>
+						<tr role="row">
+							<td><?php echo ++$index;?></td>
+							<td><?php echo $row['amount'];?></td>
+							<td><?php echo $row['package_name'];?></td>
+							<td><?php echo $row['rate'];?>%</td>
+							<td><?php echo $row['create_date'];?></td>
+							<td><?php echo $row['status_name'];?></td>
+						</tr>
+						<?php }?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
