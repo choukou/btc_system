@@ -1,0 +1,48 @@
+<script type="text/javascript">
+	$(document).ready(function($)
+	{
+		$("#tranfer_user").select2({
+			placeholder: 'Select user name...',
+			allowClear: true
+		}).on('select2-open', function()
+		{
+			// Adding Custom Scrollbar
+			$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+		});
+
+	});
+</script>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Send Tokens</h3>
+		<div class="panel-options">
+			<a href="#" data-toggle="panel"> <span class="collapse-icon"></span>
+				<span class="expand-icon"></span>
+			</a>
+		</div>
+	</div>
+	<div class="panel-body">
+
+		<div class="form-group col-xs-12">
+			<label class="col-xs-3 control-label required" for="field-1">Username</label>
+			<div class="col-xs-6">
+				<select class="form-control required" id="tranfer_user">
+					<option></option>
+					<?php foreach ($this->data as $user) {?>
+						<option value="<?php echo $user['user_id'];?>"><?php echo $user['user_name'];?></option>
+					<?php }?>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group col-xs-12">
+			<label class="col-xs-3 control-label required" for="field-1">Number of token</label>
+			<div class="col-xs-6">
+				<input type="text" class="form-control required" id="nb_tokens" >
+			</div>
+		</div>
+		<div class="form-group col-xs-12">
+			<button id="send_tk" class="btn btn-info">Send</button>
+		</div>
+	</div>
+</div>

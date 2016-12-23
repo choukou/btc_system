@@ -1,0 +1,64 @@
+<?php $arrmsg = $this->arrmsg;?>
+<input type="hidden" id="msg_id" value="<?php echo $arrmsg['msg_id'];?>" />
+	<div class="col-xs-10">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Message</h3>
+				<div class="panel-options">
+					<a href="#" data-toggle="panel"> <span class="collapse-icon"></span>
+						<span class="expand-icon"></span>
+					</a>
+				</div>
+			</div>
+			<div class="panel-body">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-xs-3 control-label" for="field-1">Receiver</label>
+						<div class="col-xs-9">
+							<script type="text/javascript">
+								jQuery(document).ready(function($)
+								{
+									$("#user_to_id").select2({
+										placeholder: 'Select user name...',
+										allowClear: true
+									}).on('select2-open', function()
+									{
+										// Adding Custom Scrollbar
+										$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+									});
+
+								});
+							</script>
+							<select class="form-control" id="user_to_id">
+							<?php if($this->user['role_id'] > 1) {?>
+								<option value="-1">ALL</option>
+							<?php } else {?>
+								<option></option>
+							<?php }?>
+							<?php if(!empty($this->listuser)){?>
+							<?php foreach ($this->listuser as $val){?>
+							<?php echo $selected = (isset($arrmsg['user_to_id']) && $arrmsg['user_to_id']==$val['user_id']) ? 'selected':'';?>
+								<option <?php echo $selected;?> value="<?php echo $val['user_id'];?>"><?php echo $val['user_name'];?></option>
+							<?php }}?>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 control-label" for="field-1">Content</label>
+						<div class="col-xs-9">
+							<textarea name ="msg_content" class="form-control ckeditor" id="msg_content" ><?php echo isset($arrmsg['msg_content'])?$arrmsg['msg_content']:'';?></textarea>
+						</div>
+					</div>
+					<div class="form-group-separator"></div>
+				</form>
+				<div class="form-group" style="text-align: center;padding-top:10px;">
+					<button  id="btn-save" class="btn btn-info">Send</button>
+					<button id="btn-cancel" class="btn btn-red">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<script> var host_name='<?php echo $this->serverUrl();?>';</script>
+<script type="text/javascript" src="/assets/js/plugin/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/assets/js/plugin/ckfinder/ckfinder.js"></script>
+<script src="/assets/js/form/message.js?<?php echo time();?>"></script>

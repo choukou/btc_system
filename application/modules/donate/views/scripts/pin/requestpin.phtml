@@ -1,0 +1,25 @@
+<input id="sell" style="display: none;" type="text" value="<?php echo $this->sell;?>" />
+<div class="panel panel-default" style="height: auto;overflow: hidden;">
+	<div class="panel-heading">
+		<h3 class="panel-title">Request Tokens</h3>
+		<div class="panel-options">
+			<a href="#" data-toggle="panel"> <span class="collapse-icon"></span>
+				<span class="expand-icon"></span>
+			</a>
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="form-group">
+			<label class="required" for="">How many tokens would you like to buy?</label>
+			<input class="form-control required"
+				id="nb_tokens_rq"
+				placeholder="tokens" type="text" />
+
+			<div class="col-xs-12">1<i class="fa fa-btc" aria-hidden="true"></i> = <?php echo $this->sell;?>$</div>
+			<div id="bc_cost" class="col-xs-12"></div>
+		</div>
+		<div class="form-group">
+			<button id="request_tk" class="btn btn-info">Request</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,154 @@
+
+<link rel="stylesheet" href="/assets/js/tree/Treant.css?<?php echo time();?>">
+<style>
+<!--
+
+q:before, q:after {
+	content: '';
+}
+
+abbr, acronym {
+	border: 0;
+}
+/* optional Container STYLES */
+.chart {
+	height: 600px;
+	margin: 5px;
+	width: 100%;
+}
+
+.Treant>.node {
+	text-align: center;
+}
+
+.Treant>p {
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light",
+		"Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+
+}
+
+.node-name {
+	font-weight: bold;
+/* 	white-space: nowrap; */
+/* 	overflow: hidden; */
+/* 	text-overflow: ellipsis; */
+}
+
+.node-name,.node-title {
+	word-wrap: break-word;
+	margin-bottom: 5px;
+}
+.nodeExample1 {
+	padding: 5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #ffffff;
+	border: 1px solid #000;
+	width: auto;
+	min-width: 50px;
+	font-family: Tahoma;
+	font-size: 11px;
+}
+
+.nodeExample1 img {
+	margin-right: 10px;
+}
+
+.Treant .collapse-switch {
+		width: 100%;
+		height:100%;
+		opacity: 0.4;
+}
+
+#tree-view div.node>p:HOVER:after {
+/* 	content: attr(title) ; */
+}
+-->
+</style>
+<div class="chart" id="tree-view"></div>
+<script src="/assets/js/form/m5common.js"></script>
+<script src="/assets/js/tree/raphael.js"></script>
+<script src="/assets/js/tree/Treant.js"></script>
+<script src="/assets/js/jquery.easing.js"></script>
+
+<script>
+	var tree = <?php  echo empty($this->rows) ? '{}' :json_encode($this->rows);?>;
+	var data_format = [];
+	$.each(tree, function(index, value){
+			var node = {
+				text:{},
+				stackChildren: false,
+				childrenDropLevel: 0,
+// 				collapsable :true,
+				collapsed : value.is_branch == 1 && value.lvl > 1 ? true : false,
+				};
+			node.tree_id = value.tree_id;
+			node.parent_tree_id = value.parent_tree_id;
+			node.text.name = value.user_name + ' (' + value.rank_name +')';
+			node.text.title = 'PH(' + value.countph + ')';
+// 			node.text.contact = value.phone;
+			data_format.push(node);
+	});
+
+	var config = {
+		chart: {
+			container: "#tree-view",
+			nodeAlign: "CENTER",
+			levelSeparation: 25,
+			siblingSeparation: 10,
+			subTeeSeparation: 20,
+			padding : 5,
+			connectors: {
+					type: 'step'
+			},
+			node: {
+					HTMLclass: 'nodeExample1',
+					collapsable: true
+			}
+		}
+	};
+	config.nodeStructure = flatToHierarchy(data_format)[0];
+
+
+	new Treant( config );
+
+
+
+
+	function flatToHierarchy (flat) {
+		var parent = flat[0].parent_tree_id;
+			var roots = [] // things without parent
+
+			// make them accessible by guid on this map
+			var all = {}
+
+			flat.forEach(function(item) {
+				all[item.tree_id] = item;
+			})
+
+			// connect childrens to its parent, and split roots apart
+			Object.keys(all).forEach(function (tree_id) {
+					var item = all[tree_id];
+
+					if (item.parent_tree_id == parent) {
+							roots.push(item);
+					} else if (item.parent_tree_id in all) {
+							var p = all[item.parent_tree_id];
+							if (!('children' in p)) {
+									p.children = [];
+							}
+							p.children.push(item);
+					}
+			})
+
+			// done!
+			return roots
+	}
+
+	$('#tree-view div.node>p').each(function(){
+		$(this).attr('title', $(this).text());
+	});
+</script>

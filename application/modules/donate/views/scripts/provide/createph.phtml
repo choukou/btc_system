@@ -1,0 +1,68 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Create Deposit</h3>
+		<div class="panel-options">
+			<a href="#" data-toggle="panel"> <span class="collapse-icon"></span>
+				<span class="expand-icon"></span>
+			</a>
+		</div>
+	</div>
+	<div class="panel-body">
+
+		<div class="form-group col-xs-12">
+			<label class="col-xs-3 control-label required" for="field-1">Package</label>
+			<div class="col-xs-6">
+				<select class="form-control required" id="package_ph">
+					<?php foreach ($this->data as $package) {?>
+						<option
+						<?php if($this->pack > 0 && $this->pack ==  $package['id']) {echo 'selected="selected"';}?>
+						start = "<?php echo $package['start'];?>"
+						end = "<?php echo $package['end'];?>"
+						distance = "<?php echo $package['distance'];?>"
+						interest_rate = "<?php echo $package['interest_rate'];?>"
+						pin_cost = "<?php echo $package['pin_cost'];?>"
+						value="<?php echo $package['id'];?>">
+							<?php echo $package['package_name'];?>
+						</option>
+					<?php }?>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group col-xs-12">
+			<label class="col-xs-3 control-label required" for="field-1">Number of Bitcoin</label>
+			<div class="col-xs-6">
+				<input class="form-control required" id="bitcoin_nb" placeholder="bitcoin" type="text" />
+			</div>
+			<div id="note-package" class="col-xs-3">Min: 0.1, Max: 0.9</div>
+		</div>
+		<div class="form-group col-xs-12">
+			<button id="create" class="btn btn-info">Create</button>
+		</div>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="col-xs-12">
+			<div id="qrcode" align="center" data-uri="<?php echo $this->user['btc_address'];?>"></div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function($) {
+// 	$('#btn_update_wallet').prop('disabled', false);
+    $('#qrcode').qrcode("bitcoin:<?php echo $this->user['btc_address'];?>");
+//     $('#btn_update_wallet').click(function(){
+//         $(this).prop('disabled', true);
+//     	location.reload();
+//     });
+
+	$(document).on('change', '#bitcoin_nb', function() {
+		var dress = $('#qrcode').data('uri');
+		var amount = 1*$(this).val();
+		$('#qrcode').html('');
+		$('#qrcode').qrcode("bitcoin:" + dress + '?amount=' + amount);
+	});
+});
+</script>

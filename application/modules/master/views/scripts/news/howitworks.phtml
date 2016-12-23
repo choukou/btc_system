@@ -1,0 +1,33 @@
+<?php $news = $this->arrnews;?>
+<input type="hidden" value="<?php echo isset($news['news_id'])? $news['news_id']:'';?>" id="news_id" />
+<div class="row">
+	<div class="col-xs-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">How it works</h3>
+				<div class="panel-options">
+					<a href="#" data-toggle="panel"> <span class="collapse-icon"></span>
+						<span class="expand-icon"></span>
+					</a>
+				</div>
+			</div>
+			<div class="panel-body">
+				<div role="form" class="form-horizontal">
+					<div class="form-group">
+						<div class="col-xs-12">
+							<textarea class="form-control ckeditor required" cols="5" rows="10" name="description" id="description"><?php echo isset($news['description'])? $news['description']:'';?></textarea>
+						</div>
+					</div>
+					<div class="form-group" style="text-align: center">
+						<button id="btn-save" class="btn btn-info">Save</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script> var host_name='<?php echo $this->serverUrl();?>';</script>
+<script type="text/javascript" src="/assets/js/plugin/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/assets/js/plugin/ckfinder/ckfinder.js"></script>
+<script type="text/javascript" src="/assets/js/form/howitworks.js?<?php echo time();?>"></script>

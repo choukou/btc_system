@@ -1,0 +1,190 @@
+
+<div class="row">
+	<div class="col-xs-12" style="padding: 0;">
+		<div class="col-xs-4">
+			<div id="p_r_wallet" class="xe-widget xe-counter-block" data-count=".num"
+				data-from="0" data-to="<?php echo $this->data[0][0]['r_wallet'];?>"
+				data-suffix="" data-duration="0.5">
+				<div class="xe-upper">
+					<div class="xe-icon">
+						<i class="linecons-cloud"></i>
+					</div>
+					<div class="xe-label">
+						<strong r_wallet="<?php echo $this->data[0][0]['r_wallet'];?>" class="num" id="r_wallet"><?php echo $this->data[0][0]['r_wallet'];?></strong>
+						<span>Profit Bonus</span>
+					</div>
+				</div>
+				<div class="xe-lower">
+					<div class="border"></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<div class="xe-widget xe-counter-block xe-counter-block-blue"
+				data-suffix="" data-count=".num" data-from="0"
+				data-to="<?php echo $this->data[0][0]['sponsor_bonus'];?>"
+				data-duration="4" data-easing="false">
+				<div class="xe-upper">
+					<div class="xe-icon">
+						<i class="linecons-user"></i>
+					</div>
+					<div class="xe-label">
+						<strong class="num"><?php echo $this->data[0][0]['sponsor_bonus'];?></strong>
+						<span>Referral Bonus</span>
+					</div>
+				</div>
+				<div class="xe-lower">
+					<div class="border"></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<div class="xe-widget xe-counter-block xe-counter-block-purple"
+				data-count=".num" data-from="0"
+				data-to=<?php echo $this->data[0][0]['manager_bounus'];?>
+				data-duration="3">
+				<div class="xe-upper">
+					<div class="xe-icon">
+						<i class="linecons-cog"></i>
+					</div>
+					<div class="xe-label">
+						<strong class="num"><?php echo $this->data[0][0]['manager_bounus'];?></strong>
+						<span>System Bonus</span>
+					</div>
+				</div>
+				<div class="xe-lower">
+					<div class="border"></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<div class="xe-widget xe-progress-counter xe-progress-counter-pink"
+				data-count=".num" data-from="0"
+				data-to="<?php echo $this->data[0][0]['withdrawable1'] + $this->data[0][0]['withdrawable2'];?>"
+				data-duration="2">
+				<div class="xe-background">
+					<i class="linecons-money"></i>
+				</div>
+				<div class="xe-upper">
+					<div class="xe-icon">
+						<i class="linecons-money"></i>
+					</div>
+					<div class="xe-label">
+						<strong class="num"><?php echo $this->data[0][0]['withdrawable1'] + $this->data[0][0]['withdrawable2'];?></strong>
+					</div>
+				</div>
+				<div class="xe-progress">
+					<span class="xe-progress-fill" data-fill-from="0"
+						data-fill-to="100" data-fill-unit="%" data-fill-property="width"
+						data-fill-duration="2" data-fill-easing="true"
+						style="width: 100%;"></span>
+				</div>
+				<div class="xe-lower">
+					<strong>Withdrawable</strong>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<div
+				class="xe-widget xe-progress-counter xe-progress-counter-turquoise"
+				data-count=".num" data-from="0"
+				data-to="<?php echo $this->data[1][0]['pin'];?>" data-suffix=""
+				data-duration="3">
+				<div class="xe-background">
+					<i class="linecons-paper-plane"></i>
+				</div>
+
+				<div class="xe-upper">
+					<div class="xe-icon">
+						<i class="linecons-paper-plane"></i>
+					</div>
+					<div class="xe-label">
+						<strong class="num"><?php echo $this->data[1][0]['pin'];?></strong>
+					</div>
+				</div>
+
+				<div class="xe-progress">
+					<span class="xe-progress-fill" data-fill-from="0"
+						data-fill-to="100" data-fill-unit="%" data-fill-property="width"
+						data-fill-duration="3" data-fill-easing="true"
+						style="width: 100%;"></span>
+				</div>
+				<div class="xe-lower">
+					<strong>PIN</strong>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<div class="xe-widget xe-progress-counter xe-progress-counter-info"
+				data-count=".num" data-from="0" data-to="<?php echo $this->data[2][0]['cnt_children'];?>" data-suffix=""
+				data-duration="4">
+
+				<div class="xe-background">
+					<i class="linecons-star"></i>
+				</div>
+				<div class="xe-upper">
+					<div class="xe-icon">
+						<i class="linecons-star"></i>
+					</div>
+					<div class="xe-label">
+						<strong class="num"><?php echo $this->data[2][0]['cnt_children'];?></strong>
+					</div>
+				</div>
+
+				<div class="xe-progress">
+					<span class="xe-progress-fill" data-fill-from="0" data-fill-to="100"
+						data-fill-unit="%" data-fill-property="width"
+						data-fill-duration="4" data-fill-easing="true" style="width: 100%;"></span>
+				</div>
+
+				<div class="xe-lower">
+					<strong>Direct Sponsor</strong>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-12">
+		<div class="panel panel-default" style="overflow: hidden;">
+			<div class="panel-heading">
+				<h4 class="heading">TOP 15 Direct Sponsor</h4>
+			</div>
+			<div class="panel-body">
+				<div class="media-body innerAnnounce">
+					<table
+						class="table table-bordered table-striped dataTable no-footer"
+						id="example-2" role="grid" aria-describedby="example-2_info">
+						<thead>
+							<tr role="row">
+								<th>No</th>
+								<th>User name</th>
+								<th>Level</th>
+								<th>Direct Sponsor</th>
+								<th>Date create</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody class="middle-align">
+					<?php foreach ($this->data[3] as $index => $row) {?>
+					<tr role="row" class="odd">
+								<td><?php echo ++$index;?></td>
+								<td><?php echo $row['user_name'];?></td>
+								<td><?php echo $row['rank_name'];?></td>
+								<td><?php echo $row['cnt_children'];?></td>
+								<td><?php echo $row['create_date'];?></td>
+								<td><?php echo $row['status_name'];?></td>
+							</tr>
+					<?php }?>
+				</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	var rate_day = <?php echo empty($this->data[4][0]['rate_day'])? 0 : $this->data[4][0]['rate_day'];?>;
+</script>
+<script src="/assets/js/form/dashboard.js?<?php echo time();?>"></script>

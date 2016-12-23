@@ -1,0 +1,66 @@
+<style>
+.name-error {
+	display: block;
+}
+</style>
+<script src="assets/js/form/admin.js?<?php echo time();?>"></script>
+<div id="admin-content">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="col-xs-4">
+				<div class="row">Curret BIT: <?php echo $this->balance;?> Bit</div>
+				<div class="row">Total bit : <?php echo empty($this->total_bit) ? 0 : $this->total_bit;?> BIT</div>
+				<div class="row">Tranfer bit : <?php echo $this->tranfr_bit;?> BIT</div>
+			</div>
+			<div class="col-xs-8">
+				<div id="qrcode_admin"  align="center"
+				data-tranfer="<?php echo $this->tranfr_bit;?>"
+				data-uri="bitcoin:<?php echo BLC::STOCK_ID . '?amount=' . $this->tranfr_bit;?>"></div>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">List withdraw - Total bit : <?php echo $this->total_bit;?> BIT</h3>
+		</div>
+		<div class="panel-body">
+			<div id="example-2_wrapper"
+				class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+				<table class="table table-bordered table-striped dataTable no-footer"
+					role="grid" aria-describedby="example-2_info">
+					<thead>
+						<tr role="row">
+							<th>No</th>
+							<th>User Name</th>
+							<th>Amount</th>
+							<th>Date create</th>
+							<th>Day ago</th>
+						</tr>
+					</thead>
+					<tbody class="middle-align">
+						<?php foreach ($this->list as $index => $row) {?>
+						<tr role="row">
+							<td>
+								<?php echo ++$index;?>
+							</td>
+							<td><?php echo $row['user_name'];?></td>
+							<td><?php echo $row['amount'];?></td>
+							<td><?php echo $row['create_date'];?></td>
+							<td><?php echo $row['day_ago'];?> day ago</td>
+						</tr>
+						<?php }?>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+<script type="text/javascript">
+$(document).ready(function($) {
+    $('#qrcode_admin').qrcode($('#qrcode_admin').data('uri'));
+});
+</script>

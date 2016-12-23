@@ -1,0 +1,128 @@
+<?php $picture = $this->getHelper('ShowProfile');?>
+<?php $homeData = $this->homeData;?>
+
+			<div class="main_content pack1">
+				<div class="title_content">
+					<div class="img">
+						<div class="title">CHOOSE PACKAGES</div>
+					</div>
+				</div>
+				<div class="package">
+					<div class="detail">
+						<a href="/providehelp?pack=1"><img src="<?php echo $homeData[1]['img_path'];?>" tppabs="<?php echo $homeData[1]['img_path'];?>"></a>
+					</div>
+					<div class="detail">
+						<a href="/providehelp?pack=2"><img src="<?php echo $homeData[2]['img_path'];?>" tppabs="<?php echo $homeData[2]['img_path'];?>"></a>
+					</div>
+					<div class="detail">
+						<a href="/providehelp?pack=3"><img src="<?php echo $homeData[3]['img_path'];?>" tppabs="<?php echo $homeData[3]['img_path'];?>"></a>
+					</div>
+					<div class="detail">
+						<a href="/providehelp?pack=4"><img src="<?php echo $homeData[4]['img_path'];?>" tppabs="<?php echo $homeData[4]['img_path'];?>"></a>
+					</div>
+					<div class="detail">
+						<a href="/providehelp?pack=5"><img src="<?php echo $homeData[5]['img_path'];?>" tppabs="<?php echo $homeData[5]['img_path'];?>"></a>
+					</div>
+					<div class="detail">
+						<a href="/providehelp?pack=6"><img src="<?php echo $homeData[6]['img_path'];?>" tppabs="<?php echo $homeData[6]['img_path'];?>"></a>
+					</div>
+				</div>
+			</div>
+			<div class="main_content pack2">
+				<div class="title_content">
+					<div class="img">
+						<div class="title">LATES TRANSACTIONS</div>
+					</div>
+				</div>
+				<div class="transaction">
+					<div class="left_transaction">
+						<div class="tran_detail">
+							<table class="thong-ke">
+								<caption>Thống Kê</caption>
+								<tbody>
+									<tr>
+										<td>Tổng số tiền đã gửi :</td>
+										<td><?php echo isset($this->data[2][0]['ph_total']) ? $this->data[2][0]['ph_total'] : 0;?> BIT</td>
+									</tr>
+									<tr>
+										<td>Tổng số tiền đã rút :</td>
+										<td><?php echo isset($this->data[3][0]['gh_total']) ? $this->data[3][0]['gh_total'] : 0;?> BIT</td>
+									</tr>
+									<tr>
+										<td>Tổng số hoa hồng :</td>
+										<td><?php echo isset($this->data[4][0]['profits_total']) ? $this->data[4][0]['profits_total'] : 0;?> BIT</td>
+									</tr>
+									<tr>
+										<td>Tổng số thành viên :</td>
+										<td><?php echo isset($this->data[5][0]['member_total']) ? $this->data[5][0]['member_total'] : 0;?></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="tran_detail">
+							<a href="#">
+								<img src="<?php echo $homeData[7]['img_path'];?>" tppabs="<?php echo $homeData[7]['img_path'];?>"></a>
+						</div>
+						<div class="tran_detail">
+							<a href="#">
+								<img src="<?php echo $homeData[8]['img_path'];?>" tppabs="<?php echo $homeData[8]['img_path'];?>"></a>
+						</div>
+						<div class="tran_detail">
+							<a href="#">
+								<img src="<?php echo $homeData[9]['img_path'];?>" tppabs="<?php echo $homeData[9]['img_path'];?>"></a>
+						</div>
+					</div>
+
+					<div class="center_transaction">
+						<div class="center_detail">
+							<table class="table table-condensed">
+								<tbody>
+									<?php foreach ($this->data[0] as $key => $row) {?>
+											<tr <?php if($key%2) { echo 'style="background: #eceff2;"';}?> >
+												<td><a href="#"><img src="<?php echo $picture->showProfile($row['rank'], $row['sex']); ?>" tppabs="<?php echo $picture->showProfile($this->user['rank'], $this->user['sex']); ?>" alt="avatar" /><?php echo $row['user_name'];?></a></td>
+												<td><img src="<?php echo $this->baseUrl('/assets/images/home/bicon.png')?>" tppabs="/assets/images/home/bicon.png" alt="bicon" /><?php echo $row['minute_ago'];?> minutes ago</td>
+												<td><img src="<?php echo $this->baseUrl('/assets/images/home/micon.png')?>" tppabs="/assets/images/home/micon.png" alt="micon" /><?php echo $row['amount'];?> BIT</td>
+											</tr>
+
+									<?php } ?>
+
+								</tbody>
+							</table>
+							<table class="table table-condensed">
+								<caption style="font-size: 25px; font-weight: bold; color: red;">TOP 15 Direct Sponsor</caption>
+								<thead>
+									<tr>
+										<th align="left">User name</th>
+										<th align="left">Level</th>
+										<th align="left">Direct Sponsor</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php foreach ($this->data[1] as $key => $row) {?>
+											<tr <?php if($key%2) { echo 'style="background: #eceff2;"';}?> >
+												<td><a href="#"><img src="<?php echo $picture->showProfile($row['rank'], $row['sex']); ?>" tppabs="<?php echo $picture->showProfile($this->user['rank'], $this->user['sex']); ?>" alt="avatar" /><?php echo $row['user_name'];?></a></td>
+												<td><?php echo $row['rank_name'];?></td>
+												<td><?php echo $row['cnt_children'];?></td>
+											</tr>
+
+									<?php } ?>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="right_transaction">
+						<div class="tran_detail">
+							<a href="#">
+								<img src="<?php echo $homeData[10]['img_path'];?>" tppabs="<?php echo $homeData[10]['img_path'];?>"></a>
+
+						</div>
+						<div class="tran_video">
+							<iframe width="220" src="<?php echo $homeData[12]['link'];?>" tppabs="<?php echo $homeData[12]['link'];?>" frameborder="0" allowfullscreen></iframe>
+						</div>
+						<div class="tran_detail">
+							<a href="#">
+								<img src="<?php echo $homeData[11]['img_path'];?>" tppabs="<?php echo $homeData[11]['img_path'];?>"></a>
+						</div>
+					</div>
+				</div>
+			</div>
