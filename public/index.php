@@ -46,6 +46,7 @@ PATH_SEPARATOR, array(
 )));
 
 require_once 'const.php';
+var_dump(LIBRARY_PATH .'/Blockchain/vendor/autoload.php');die;
 require_once LIBRARY_PATH .'/Blockchain/vendor/autoload.php';
 /** Zend_Application */
 require_once 'Zend/Application.php';
